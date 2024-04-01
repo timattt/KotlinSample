@@ -1,3 +1,3 @@
 # Kotlin sample
 
-Тестовый проект на kotlin.
+Тестовый CRUD-проект на kotlin. Вместо ORM пока заглушка.
