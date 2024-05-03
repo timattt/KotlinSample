@@ -4,11 +4,9 @@ import domain.model.Publication
 
 interface PublicationService {
 
-    fun createPublication(text: String): Publication
-    fun readPublication(id: Int): Publication
-    fun updatePublication(id: Int, text: String): Publication
-    fun deletePublication(id: Int): Publication
-    fun index(from: Int, to: Int): List<Publication>
-    fun index(): List<Publication>
+    suspend fun createPublication(text: String): Publication
+    suspend fun readPublication(id: Int): Publication
+    suspend fun deletePublication(id: Int): Publication
+    suspend fun index(): List<Publication>
 
 }

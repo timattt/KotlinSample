@@ -27,34 +27,8 @@ fun Application.configureRouting() {
                 call.respond(publicationMapper.toDto(publicationService.deletePublication(it.toInt())))
             }
         }
-        post("/update/{id}") {
-            val id = call.parameters["id"]?.toInt()
-            val text = call.request.queryParameters["text"]
-
-            if (id == null || text == null) {
-                throw RuntimeException("Bad parameters")
-            }
-
-            call.respond(HttpStatusCode.OK, publicationMapper.toDto(publicationService.updatePublication(id, text)))
-        }
         get("/index") {
-            val fromParam = call.request.queryParameters["from"]
-            val toParam = call.request.queryParameters["to"]
-
-            if (fromParam == null && toParam == null) {
-                call.respond(HttpStatusCode.OK, publicationService.index().map { publicationMapper.toDto(it) })
-            } else if (fromParam == null || toParam == null) {
-                throw RuntimeException("Bad parameters")
-            } else {
-                val from = fromParam?.toInt()
-                val to = toParam?.toInt()
-
-                if (from == null || to == null) {
-                    throw RuntimeException("Bad parameters")
-                }
-
-                call.respond(HttpStatusCode.OK, publicationService.index(from, to).map { publicationMapper.toDto(it) })
-            }
+            call.respond(HttpStatusCode.OK, publicationService.index().map { publicationMapper.toDto(it) })
         }
     }
 }
